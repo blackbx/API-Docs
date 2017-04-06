@@ -1,0 +1,807 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #272822;
+  background-color: #f92672;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #f8f8f2;
+}
+.highlight .p, .highlight .pi {
+  color: #f8f8f2;
+}
+.highlight .gi {
+  color: #a6e22e;
+}
+.highlight .gd {
+  color: #f92672;
+}
+.highlight .gh {
+  color: #66d9ef;
+  background-color: #272822;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #ae81ff;
+}
+.highlight .kc {
+  color: #fd971f;
+}
+.highlight .kt {
+  color: #fd971f;
+}
+.highlight .kd {
+  color: #fd971f;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #a6e22e;
+}
+.highlight .sr {
+  color: #a1efe4;
+}
+.highlight .si {
+  color: #cc6633;
+}
+.highlight .se {
+  color: #cc6633;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #66d9ef;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #a6e22e;
+}
+.highlight .ss {
+  color: #a6e22e;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/bxLogo_inverse.png" alt="Bxlogo inverse" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to the BlackBX API! You can use our API to access BlackBX API endpoints, which can get various pieces of information.</p>
+
+<p>At the moment, we only offer support for Shell!</p>
+
+<h1 id="authentication-with-blackbx">Authentication With BlackBX</h1>
+
+<blockquote>
+<p>To authorize, use this code:rwar</p>
+</blockquote>
+<pre class="highlight plaintext"><code>With shell, you can just pass the correct header with each request
+curl "api_endpoint_here"
+  -H "Authorization: /oauth"
+</code></pre><pre class="highlight shell"><code>curl <span class="s2">"http://blackbx.io/api/oauth/token"</span>
+  -H <span class="s2">"Authorization: apiKey"</span>
+</code></pre>
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
+</blockquote>
+
+<p>The BlackBX API uses API keys to allow access to the API. You can register a new BlackBX API key at our <a href="http://example.com/oauth/token">developer portal</a>.</p>
+
+<p>BlackBX expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+
+<p><code class="prettyprint">Authorization: apiKey</code></p>
+
+<p>This endpoint authorizes you with our service.</p>
+
+<aside class="notice">
+You must replace <code>apiKey</code> with your personal API key.
+</aside>
+
+<h1 id="customer">Customer</h1>
+
+<aside class="notice">
+  This object requires admin access
+</aside>
+
+<h2 id="create-customer">Create Customer</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST http://example.com/members/</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Email</td>
+<td>No</td>
+<td>string</td>
+<td>Email associated with Customer</td>
+</tr>
+<tr>
+<td>First</td>
+<td>No</td>
+<td>string</td>
+<td>First Name associated with Customer</td>
+</tr>
+<tr>
+<td>Last</td>
+<td>No</td>
+<td>string</td>
+<td>Last Name associated with Customer</td>
+</tr>
+<tr>
+<td>Company</td>
+<td>No</td>
+<td>string</td>
+<td>Company associated with Customer</td>
+</tr>
+<tr>
+<td>role</td>
+<td>No</td>
+<td>bool</td>
+<td>Role</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-customer">Get Customer</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://example.com/members/&lt;user_id&gt;</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>The user id of the customer.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-customer">Update Customer</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://example.com/members/&lt;user_id&gt;</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>Yes</td>
+<td>string</td>
+<td>The user id of the customer to be updated.</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>No</td>
+<td>string</td>
+<td>Email associated with Customer</td>
+</tr>
+<tr>
+<td>First</td>
+<td>No</td>
+<td>string</td>
+<td>First Name associated with Customer</td>
+</tr>
+<tr>
+<td>Last</td>
+<td>No</td>
+<td>string</td>
+<td>Last Name associated with Customer</td>
+</tr>
+<tr>
+<td>Company</td>
+<td>No</td>
+<td>string</td>
+<td>Company associated with Customer</td>
+</tr>
+<tr>
+<td>role</td>
+<td>No</td>
+<td>bool</td>
+<td>Role</td>
+</tr>
+</tbody></table>
+
+<h1 id="locations">Locations</h1>
+
+<p>In BlackBX, we assign device locations serial numbers where we can get all information relating to this location using the serial number.</p>
+
+<h2 id="retreive-specific-location">Retreive Specific Location</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/locations/71B1066C148A"</span>
+  -H <span class="s2">"Authorization: apiKey"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET http://example.com/locations/&lt;serial_number&gt;</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>serial_number</td>
+<td>The serial number that represents the location.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-a-location">Update a Location</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/locations/2"</span>
+  -H <span class="s2">"Authorization: apiKey"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint updates a specific kitten.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT http://example.com/locations/&lt;serial_number&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>serial_number</td>
+<td>The ID of the location to update</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-a-location">Delete a Location</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/locations/2"</span>
+  -H <span class="s2">"Authorization: apiKey"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+
+<p>This endpoint updates a specific kitten.</p>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">DELETE http://example.com/locations/&lt;serial_number&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>serial_number</td>
+<td>The ID of the location to delete</td>
+</tr>
+</tbody></table>
+
+<h1 id="stripe">Stripe</h1>
+
+<aside class="notice">
+  This object requires admin access
+</aside>
+
+<p>This section is for accessing our Stripe integration, where we have a CRUD for Customers, Charges &amp; Cards</p>
+
+<h2 id="authorizing-with-stripe">Authorizing with Stripe</h2>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p>&lsquo;GET http://example.com/stripe/authorize&rsquo;</p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uid</td>
+<td>Yes</td>
+<td>string</td>
+<td>The user id of the customer to connected to Stripe.</td>
+</tr>
+</tbody></table>
+
+<h2 id="customers">Customers</h2>
+
+<h3 id="create-new-customer">Create New Customer</h3>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p>&#39;POST http://example.com/stripe/customer&rsquo;</p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Yes</td>
+<td>int</td>
+<td>The user id of the customer to be connected to Stripe.</td>
+</tr>
+<tr>
+<td>serial</td>
+<td>Yes</td>
+<td>string</td>
+<td>The location where Customer is signing up</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-customer-in-stripe">Update Customer in Stripe</h3>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p>&#39;PUT http://example.com/stripe/customer&rsquo;</p>
+
+<h2 id="cards">Cards</h2>
+
+<h3 id="create-new-card">Create New Card</h3>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p>&#39;POST http://example.com/stripe/card&rsquo;</p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customerId</td>
+<td>Yes</td>
+<td>string</td>
+<td>The Stripe Customer ID of user.</td>
+</tr>
+<tr>
+<td>card</td>
+<td>Yes</td>
+<td>object</td>
+<td>Contains Name, Card Number, CVC &amp; Expiration Date</td>
+</tr>
+</tbody></table>
+
+<h3 id="get-cards">Get Cards</h3>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p>&#39;GET http://example.com/stripe/card/{customerId}&rsquo;</p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customerId</td>
+<td>Yes</td>
+<td>string</td>
+<td>The Stripe Customer ID of user</td>
+</tr>
+</tbody></table>
+
+<h3 id="delete-card">Delete Card</h3>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p>&#39;DELETE http://example.com/stripe/card/{cardId}/{customerId}&rsquo;</p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cardId</td>
+<td>Yes</td>
+<td>string</td>
+<td>The ID of the card to delete</td>
+</tr>
+<tr>
+<td>customerId</td>
+<td>Yes</td>
+<td>string</td>
+<td>The Stripe Customer ID of user</td>
+</tr>
+</tbody></table>
+
+<h2 id="charges">Charges</h2>
+
+<h3 id="create-new-charge">Create New Charge</h3>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>Yes</td>
+<td>string</td>
+<td>The user id of the customer to be updated.</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>No</td>
+<td>string</td>
+<td>Email associated with Customer</td>
+</tr>
+<tr>
+<td>First</td>
+<td>No</td>
+<td>string</td>
+<td>First Name associated with Customer</td>
+</tr>
+<tr>
+<td>Last</td>
+<td>No</td>
+<td>string</td>
+<td>Last Name associated with Customer</td>
+</tr>
+<tr>
+<td>Company</td>
+<td>No</td>
+<td>string</td>
+<td>Company associated with Customer</td>
+</tr>
+<tr>
+<td>role</td>
+<td>No</td>
+<td>bool</td>
+<td>Role</td>
+</tr>
+</tbody></table>
+
+<h3 id="update-existing-charge">Update Existing Charge</h3>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p>&#39;PUT http://example.com/stripe/charge/{chargeId}/{customerId}&rsquo;</p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>user_id</td>
+<td>Yes</td>
+<td>string</td>
+<td>The user id of the customer to be updated.</td>
+</tr>
+<tr>
+<td>Email</td>
+<td>No</td>
+<td>string</td>
+<td>Email associated with Customer</td>
+</tr>
+<tr>
+<td>First</td>
+<td>No</td>
+<td>string</td>
+<td>First Name associated with Customer</td>
+</tr>
+<tr>
+<td>Last</td>
+<td>No</td>
+<td>string</td>
+<td>Last Name associated with Customer</td>
+</tr>
+<tr>
+<td>Company</td>
+<td>No</td>
+<td>string</td>
+<td>Company associated with Customer</td>
+</tr>
+<tr>
+<td>role</td>
+<td>No</td>
+<td>bool</td>
+<td>Role</td>
+</tr>
+</tbody></table>
+
+          <h1 id="errors">Errors</h1>
+
+<p>The BLACK<strong>BX</strong> API uses the following error codes and each, have a default message:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+</tr>
+<tr>
+<td>202</td>
+<td>Accepted</td>
+</tr>
+<tr>
+<td>203</td>
+<td>Non Authoritive Information</td>
+</tr>
+<tr>
+<td>204</td>
+<td>No Content</td>
+</tr>
+<tr>
+<td>205</td>
+<td>Reset Content</td>
+</tr>
+<tr>
+<td>206</td>
+<td>Partial Content</td>
+</tr>
+<tr>
+<td>301</td>
+<td>Moved Permanently</td>
+</tr>
+<tr>
+<td>302</td>
+<td>Found</td>
+</tr>
+<tr>
+<td>307</td>
+<td>Temporary Redirect</td>
+</tr>
+<tr>
+<td>308</td>
+<td>Permanent Redirect</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>402</td>
+<td>Payment Required</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable</td>
+</tr>
+<tr>
+<td>407</td>
+<td>Proxy Authentication Required</td>
+</tr>
+<tr>
+<td>408</td>
+<td>Request Time Out</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone</td>
+</tr>
+<tr>
+<td>411</td>
+<td>Length Required</td>
+</tr>
+<tr>
+<td>412</td>
+<td>Precondition Required</td>
+</tr>
+<tr>
+<td>413</td>
+<td>Payload Too Large</td>
+</tr>
+<tr>
+<td>414</td>
+<td>URI Too Long</td>
+</tr>
+<tr>
+<td>415</td>
+<td>Unsupported Media Type</td>
+</tr>
+<tr>
+<td>416</td>
+<td>Range Not Satisfiable</td>
+</tr>
+<tr>
+<td>417</td>
+<td>Exception Failed</td>
+</tr>
+<tr>
+<td>421</td>
+<td>Misdirect Request</td>
+</tr>
+<tr>
+<td>428</td>
+<td>Precondition Required</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented Yet</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+</tr>
+</tbody></table>
+
+<p>The default message can be replaced by calling 
+<code class="prettyprint">php
+    Http::status(statusCode, message: $request)
+</code></p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
