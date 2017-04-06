@@ -3,9 +3,6 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
-  - javascript
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
@@ -19,146 +16,118 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the BlackBX API! You can use our API to access BlackBX API endpoints, which can get various pieces of information.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+At the moment, we only offer support for Shell!
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# Authentication With BlackBX
 
-# Authentication
+> To authorize, use this code:rwar
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
+```Shell
+With shell, you can just pass the correct header with each request
+curl "api_endpoint_here"
+  -H "Authorization: /oauth"
 ```
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
+curl "http://blackbx.io/api/oauth/token"
+  -H "Authorization: apiKey"
 ```
 
 > Make sure to replace `meowmeowmeow` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+The BlackBX API uses API keys to allow access to the API. You can register a new BlackBX API key at our [developer portal](http://example.com/oauth/token).
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+BlackBX expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
-`Authorization: meowmeowmeow`
+`Authorization: apiKey`
+
+
+This endpoint authorizes you with our service.
 
 <aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
+You must replace <code>apiKey</code> with your personal API key.
 </aside>
 
-# Kittens
+# Customer
 
-## Get All Kittens
+<aside class="notice">
+  This object requires admin access
+</aside>
 
-```ruby
-require 'kittn'
+## Create Customer
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
+### HTTP Request
 
-```python
-import kittn
+`POST http://example.com/members/`
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+### Query Parameters
+
+Parameter | Required | Type     | Description
+--------- | -------- | ----     | -----------
+Email     |    No    | string   | Email associated with Customer
+First     |    No    | string   | First Name associated with Customer
+Last      |    No    | string   | Last Name associated with Customer
+Company   |    No    | string   | Company associated with Customer
+role      |    No    | bool     | Role
+
+## Get Customer
+### HTTP Request
+
+`GET http://example.com/members/<user_id>`
+
+### Query Parameters
+
+Parameter |  Description
+--------- |  -----------
+user_id | The user id of the customer.
+
+## Update Customer
+
+### HTTP Request
+
+`PUT http://example.com/members/<user_id>`
+
+### Query Parameters
+
+Parameter | Required | Type     | Description
+--------- | -------- | ----     | -----------
+user_id   |    Yes   | string   | The user id of the customer to be updated.
+Email     |    No    | string   | Email associated with Customer
+First     |    No    | string   | First Name associated with Customer
+Last      |    No    | string   | Last Name associated with Customer
+Company   |    No    | string   | Company associated with Customer
+role      |    No    | bool     | Role
+
+# Locations
+
+In BlackBX, we assign device locations serial numbers where we can get all information relating to this location using the serial number.
+
+## Retreive Specific Location
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+curl "http://example.com/locations/71B1066C148A"
+  -H "Authorization: apiKey"
 ```
 
 > The above command returns JSON structured like this:
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
 ### HTTP Request
 
-`GET http://example.com/api/kittens`
+`GET http://example.com/locations/<serial_number>`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter |  Description
+--------- |  -----------
+serial_number | The serial number that represents the location.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
+## Update a Location
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+curl "http://example.com/locations/2"
+  -H "Authorization: apiKey"
 ```
 
 > The above command returns JSON structured like this:
@@ -173,17 +142,144 @@ let max = api.kittens.get(2);
 }
 ```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+This endpoint updates a specific kitten.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`PUT http://example.com/locations/<serial_number>`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+serial_number | The ID of the location to update
+
+## Delete a Location
+
+```shell
+curl "http://example.com/locations/2"
+  -H "Authorization: apiKey"
+```
+
+> The above command returns JSON structured like this:
+
+
+
+This endpoint updates a specific kitten.
+
+### HTTP Request
+
+`DELETE http://example.com/locations/<serial_number>`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+serial_number | The ID of the location to delete
+
+# Stripe 
+<aside class="notice">
+  This object requires admin access
+</aside>
+
+This section is for accessing our Stripe integration, where we have a CRUD for Customers, Charges &amp; Cards
+
+## Authorizing with Stripe
+### HTTP Request 
+
+'GET http://example.com/stripe/authorize'
+
+### URL Parameters
+Parameter | Required | Type     | Description
+--------- | -------- | ----     | -----------
+uid       |    Yes   | string   | The user id of the customer to connected to Stripe.
+
+## Customers
+
+### Create New Customer
+
+### HTTP Request
+
+'POST http://example.com/stripe/customer'
+
+### URL Parameters
+Parameter | Required | Type     | Description
+--------- | -------- | ----     | -----------
+id        |    Yes   | int      | The user id of the customer to be connected to Stripe.
+serial    |    Yes   | string   | The location where Customer is signing up
+
+### Update Customer in Stripe
+
+### HTTP Request
+
+'PUT http://example.com/stripe/customer'
+
+## Cards
+
+### Create New Card
+
+### HTTP Request
+
+'POST http://example.com/stripe/card'
+
+### URL Parameters
+Parameter | Required | Type     | Description
+--------- | -------- | ----     | -----------
+customerId|    Yes   | string   | The Stripe Customer ID of user.
+card      |    Yes   | object   | Contains Name, Card Number, CVC &amp; Expiration Date
+
+### Get Cards
+
+### HTTP Request
+
+'GET http://example.com/stripe/card/{customerId}'
+### URL Parameters
+Parameter | Required | Type     | Description
+--------- | -------- | ----     | -----------
+customerId|   Yes    | string   | The Stripe Customer ID of user
+
+### Delete Card
+
+### HTTP Request
+'DELETE http://example.com/stripe/card/{cardId}/{customerId}'
+
+### URL Parameters
+Parameter | Required | Type     | Description
+--------- | -------- | ----     | -----------
+cardId    |   Yes    | string   | The ID of the card to delete
+customerId|   Yes    | string   | The Stripe Customer ID of user
+
+## Charges
+
+### Create New Charge
+
+### HTTP Request
+
+### URL Parameters
+Parameter | Required | Type     | Description
+--------- | -------- | ----     | -----------
+user_id   |    Yes   | string   | The user id of the customer to be updated.
+Email     |    No    | string   | Email associated with Customer
+First     |    No    | string   | First Name associated with Customer
+Last      |    No    | string   | Last Name associated with Customer
+Company   |    No    | string   | Company associated with Customer
+role      |    No    | bool     | Role
+
+### Update Existing Charge
+
+### HTTP Request
+
+'PUT http://example.com/stripe/charge/{chargeId}/{customerId}'
+
+### URL Parameters
+Parameter | Required | Type     | Description
+--------- | -------- | ----     | -----------
+user_id   |    Yes   | string   | The user id of the customer to be updated.
+Email     |    No    | string   | Email associated with Customer
+First     |    No    | string   | First Name associated with Customer
+Last      |    No    | string   | Last Name associated with Customer
+Company   |    No    | string   | Company associated with Customer
+role      |    No    | bool     | Role
+
+
 
